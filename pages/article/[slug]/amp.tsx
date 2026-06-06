@@ -75,8 +75,7 @@ export default function AmpArticle({ post }: { post: any }) {
       <Head>
         <title>{post.title.rendered} | NotesGallery AMP</title>
         <link rel="canonical" href={`https://notesgallery.com/article/${post.slug}`} />
-        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
-        <style amp-custom>{`
+        <style amp-custom="">{`
           body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; padding: 0; margin: 0; background: #fff; color: #333; }
           .header { background: #fff; padding: 16px; border-bottom: 4px solid #333; text-align: center; }
           .header h1 { font-family: Georgia, serif; margin: 0; font-size: 24px; font-weight: 900; }
