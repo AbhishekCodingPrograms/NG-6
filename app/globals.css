@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --border: #e0e0e0;
+}
+
+.dark {
+  --background: #121212;
+  --foreground: #f5f5f5;
+  --card: #1e1e1e;
+  --card-foreground: #f5f5f5;
+  --border: #333333;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Styles for Newspaper aesthetic */
+.ticker-container {
+  @apply bg-foreground text-background text-xs py-1 uppercase tracking-wide overflow-hidden whitespace-nowrap;
+}
+.ticker-content {
+  @apply inline-block;
+  animation: ticker 30s linear infinite;
+  padding-left: 100%;
+}
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+
+.newspaper-title {
+  @apply text-5xl md:text-6xl font-black tracking-tighter text-center leading-none mb-1;
+}
+
+.nav-link {
+  @apply text-sm font-semibold uppercase tracking-wider px-4 py-3 hover:text-primary transition-colors;
+}
+
+.news-list-item {
+  @apply py-4 border-b border-dashed border-border last:border-b-0;
+}
