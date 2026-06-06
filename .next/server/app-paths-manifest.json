@@ -1,9 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/[slug]/page": "app/[slug]/page.js",
   "/page": "app/page.js",
   "/free-courses/page": "app/free-courses/page.js",
   "/blog/page": "app/blog/page.js",
-  "/recruitment/page": "app/recruitment/page.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js"
+  "/article/[slug]/page": "app/article/[slug]/page.js",
+  "/recruitment/page": "app/recruitment/page.js"
 }
