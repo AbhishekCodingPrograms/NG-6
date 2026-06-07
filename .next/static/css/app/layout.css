@@ -3060,6 +3060,10 @@ video {
   font-weight: 700;
 }
 
+.prose-headings\:uppercase :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
+  text-transform: uppercase;
+}
+
 .prose-a\:text-primary :is(:where(a):not(:where([class~="not-prose"],[class~="not-prose"] *))) {
   --tw-text-opacity: 1;
   color: rgb(211 47 47 / var(--tw-text-opacity, 1));
