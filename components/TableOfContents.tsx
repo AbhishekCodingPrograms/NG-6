@@ -51,7 +51,7 @@ export default function TableOfContents() {
   if (headings.length === 0) return null;
 
   return (
-    <div className="sticky top-24 bg-background border border-border p-6 shadow-sm hidden md:block">
+    <div className="bg-background border border-border p-6 shadow-sm hidden md:block rounded-xl">
       <h3 className="font-bold uppercase tracking-wider text-sm mb-4 border-b border-foreground pb-2">
         In This Article
       </h3>

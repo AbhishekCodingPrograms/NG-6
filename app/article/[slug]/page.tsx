@@ -158,13 +158,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </article>
 
           {/* Right Sidebar (TOC & Ads) */}
-          <aside className="hidden lg:block w-80 flex-shrink-0 space-y-8 relative">
+          <aside className="hidden lg:block w-80 flex-shrink-0 space-y-8 sticky top-24 h-fit max-h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar pb-8">
             <TableOfContents />
 
             {/* Sidebar Ad Slot Placeholder */}
-            <div className="w-full bg-gray-100 border border-gray-200 p-4 text-center text-gray-400 text-xs font-bold uppercase tracking-widest h-[600px] flex flex-col justify-center sticky top-[400px]">
+            <div className="w-full bg-gray-100 dark:bg-slate-900 border border-gray-200 dark:border-slate-800 p-4 text-center text-gray-400 dark:text-gray-500 text-xs font-bold uppercase tracking-widest h-[600px] flex flex-col justify-center rounded-xl">
               <span>Advertisement Slot</span>
-              <span className="text-[0.6rem] font-normal">Google AdSense - Sticky Sidebar Vertical</span>
+              <span className="text-[0.6rem] font-normal">Google AdSense - Sidebar Vertical</span>
             </div>
           </aside>
 
