@@ -84,8 +84,10 @@ async function fetchAPI(endpoint: string, options: RequestInit = {}) {
       return null;
     }
 
-    const json = await res.json();
-    return json;
+    let jsonString = await res.text();
+    // Force HTTPS for all media URLs coming from WordPress to prevent mixed-content blocking on mobile
+    jsonString = jsonString.replace(/http:\/\/ivory-parrot/g, 'https://ivory-parrot');
+    return JSON.parse(jsonString);
   } catch (error) {
     console.error(`Network error fetching API: ${endpoint}`, error);
     // Return null so the UI can render gracefully with fallbacks
