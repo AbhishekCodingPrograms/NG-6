@@ -1,7 +1,5 @@
 {
   "/page": "app/page.js",
-  "/free-courses/page": "app/free-courses/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js",
-  "/recruitment/page": "app/recruitment/page.js"
+  "/[slug]/page": "app/[slug]/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js"
 }

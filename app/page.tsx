@@ -1,14 +1,33 @@
-import { getLatestPosts, getSpotlightPost, getTrendingPosts, formatTimeAgo } from '@/lib/api';
+import { getLatestPosts, getSpotlightPost, getTrendingPosts, formatTimeAgo, getPostsByCategorySlug } from '@/lib/api';
 import MenuHeroSection from '@/components/MenuHeroSection';
 import MenuGridSection from '@/components/MenuGridSection';
 import MenuListSection from '@/components/MenuListSection';
+
 // By default, Next.js Server Components can be async!
 export default async function Home() {
   // Fetch all headless data in parallel for maximum speed
-  const [latestPosts, spotlightPost, trendingPosts] = await Promise.all([
+  const [
+    latestPosts, 
+    spotlightPost, 
+    trendingPosts,
+    freeCoursesPosts,
+    internshipsPosts,
+    blogPosts,
+    recruitmentPosts,
+    govtJobsPosts,
+    hackathonPosts,
+    jobsPosts
+  ] = await Promise.all([
     getLatestPosts(5),
     getSpotlightPost(),
-    getTrendingPosts()
+    getTrendingPosts(),
+    getPostsByCategorySlug('free-courses', 5),
+    getPostsByCategorySlug('internships', 4),
+    getPostsByCategorySlug('blog', 5),
+    getPostsByCategorySlug('recruitment', 6),
+    getPostsByCategorySlug('govt-jobs', 6),
+    getPostsByCategorySlug('hackathon', 4),
+    getPostsByCategorySlug('jobs', 5)
   ]);
 
   return (
@@ -118,56 +137,63 @@ export default async function Home() {
       {/* 1. Hero Layout (Featured) */}
       <MenuHeroSection 
         title="Free Courses" 
-        href="/free-courses" 
+        href="/category/free-courses" 
         widgetColor="bg-blue-600"
+        posts={freeCoursesPosts}
       />
       
       {/* 2. Grid Layout */}
       <div className="bg-slate-50 dark:bg-black/20 border-y border-gray-200 dark:border-gray-800 -my-8 pb-8 pt-8">
         <MenuGridSection 
           title="Internships" 
-          href="/internships" 
+          href="/category/internships" 
           widgetColor="bg-emerald-600"
+          posts={internshipsPosts}
         />
       </div>
       
       {/* 3. Hero Layout */}
       <MenuHeroSection 
         title="Blog" 
-        href="/blog" 
+        href="/category/blog" 
         widgetColor="bg-fuchsia-600"
+        posts={blogPosts}
       />
       
       {/* 4. Dense List Layout */}
       <div className="bg-slate-50 dark:bg-black/20 border-y border-gray-200 dark:border-gray-800 -my-8 pb-8 pt-8">
         <MenuListSection 
           title="Recruitment" 
-          href="/recruitment" 
+          href="/category/recruitment" 
           widgetColor="bg-amber-600"
+          posts={recruitmentPosts}
         />
       </div>
       
       {/* 5. Dense List Layout */}
       <MenuListSection 
         title="Govt Job" 
-        href="/govt-jobs" 
+        href="/category/govt-jobs" 
         widgetColor="bg-rose-600"
+        posts={govtJobsPosts}
       />
       
       {/* 6. Grid Layout */}
       <div className="bg-slate-50 dark:bg-black/20 border-y border-gray-200 dark:border-gray-800 -my-8 pb-8 pt-8">
         <MenuGridSection 
           title="Hackathon" 
-          href="/hackathon" 
+          href="/category/hackathon" 
           widgetColor="bg-indigo-600"
+          posts={hackathonPosts}
         />
       </div>
       
       {/* 7. Hero Layout */}
       <MenuHeroSection 
         title="Jobs" 
-        href="/jobs" 
+        href="/category/jobs" 
         widgetColor="bg-teal-600"
+        posts={jobsPosts}
       />
 
     </div>

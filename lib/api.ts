@@ -44,6 +44,19 @@ const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:8
  * Universal fetcher with error handling and Next.js ISR cache tagging.
  */
 async function fetchAPI(endpoint: string, options: RequestInit = {}) {
+  const wpUsername = process.env.WP_API_USERNAME;
+  const wpPassword = process.env.WP_API_PASSWORD;
+
+  let headers = options.headers || {};
+
+  if (wpUsername && wpPassword) {
+    const encodedCredentials = Buffer.from(`${wpUsername}:${wpPassword}`).toString('base64');
+    headers = {
+      ...headers,
+      'Authorization': `Basic ${encodedCredentials}`,
+    };
+  }
+
   const defaultOptions = {
     // Next.js standard data cache. Revalidate every 60 seconds.
     next: { revalidate: 60 },
@@ -53,6 +66,7 @@ async function fetchAPI(endpoint: string, options: RequestInit = {}) {
     const res = await fetch(`${API_URL}${endpoint}`, {
       ...defaultOptions,
       ...options,
+      headers,
     });
 
     if (!res.ok) {
@@ -103,6 +117,12 @@ export async function getCategoryBySlug(slug: string): Promise<WPCategory | null
 export async function getPostsByCategory(categoryId: number, limit: number = 10): Promise<WPPost[]> {
   const data = await fetchAPI(`/wp/v2/posts?categories=${categoryId}&per_page=${limit}&_embed`);
   return data || [];
+}
+
+export async function getPostsByCategorySlug(slug: string, limit: number = 10): Promise<WPPost[]> {
+  const category = await getCategoryBySlug(slug);
+  if (!category) return [];
+  return await getPostsByCategory(category.id, limit);
 }
 
 export async function searchPosts(query: string, limit: number = 10): Promise<WPPost[]> {

@@ -14,7 +14,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.notesgallery.com', // Assuming WP Headless API domain
+        hostname: 'intern.notesgallery.com', // Assuming WP Headless API domain
       }
     ],
     formats: ['image/avif', 'image/webp'],

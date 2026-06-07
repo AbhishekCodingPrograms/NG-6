@@ -1,19 +1,36 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import { WPPost, formatTimeAgo } from '@/lib/api';
 
 interface MenuListSectionProps {
   title: string;
   href: string;
   widgetColor?: string;
+  posts?: WPPost[];
 }
 
 export default function MenuListSection({ 
   title, 
   href, 
-  widgetColor = "bg-blue-600"
+  widgetColor = "bg-blue-600",
+  posts = []
 }: MenuListSectionProps) {
   
   const textColorClass = widgetColor.replace('bg-', 'text-');
+
+  if (!posts || posts.length === 0) {
+    return (
+      <section className="container mx-auto px-4 my-16 font-sans">
+        <div className="flex items-center mb-6 pb-2 border-b-2 border-gray-900 dark:border-white">
+          <h2 className="text-3xl font-black uppercase tracking-tight text-gray-900 dark:text-white flex-1">{title}</h2>
+        </div>
+        <div className="text-center py-8 text-gray-500 italic">No posts available in this section yet.</div>
+      </section>
+    );
+  }
+
+  // Take up to 6 posts for the list
+  const listPosts = posts.slice(0, 6);
 
   return (
     <section className="container mx-auto px-4 my-16 font-sans">
@@ -28,24 +45,18 @@ export default function MenuListSection({
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
         
-        {[1, 2, 3, 4, 5, 6].map((item, idx) => (
-          <a key={idx} href="/article/dummy-post" className="group flex gap-4 items-start">
+        {listPosts.map((post, idx) => (
+          <a key={post.id} href={`/article/${post.slug}`} className="group flex gap-4 items-start">
             <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-white text-sm ${widgetColor}`}>
               {idx + 1}
             </div>
             <div>
-              <h3 className="text-lg font-bold leading-snug text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1 line-clamp-2">
-                {idx === 0 && `UPSC Prelims Result 2026 Declared: Check your score now`}
-                {idx === 1 && `SSC CGL Notification Released for 10,000+ vacancies`}
-                {idx === 2 && `IBPS PO Mains Admit Card available for download`}
-                {idx === 3 && `RRB NTPC Final Merit List announced today`}
-                {idx === 4 && `State Police Constable Recruitment Drive 2026 starts`}
-                {idx === 5 && `Important changes to ${title} application process`}
+              <h3 className="text-lg font-bold leading-snug text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1 line-clamp-2" dangerouslySetInnerHTML={{ __html: post.title.rendered }}>
               </h3>
               <div className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
-                <span className={textColorClass}>Update</span>
+                <span className={textColorClass}>{post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Update'}</span>
                 <span>•</span>
-                <span>{idx === 0 ? 'Just Now' : `${idx} Hrs Ago`}</span>
+                <span>{formatTimeAgo(post.date)}</span>
               </div>
             </div>
           </a>
