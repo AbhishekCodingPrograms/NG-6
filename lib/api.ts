@@ -35,7 +35,17 @@ export interface WPCategory {
   id: number;
   name: string;
   slug: string;
-  description: string;
+}
+
+export interface WPComment {
+  id: number;
+  post: number;
+  author_name: string;
+  author_avatar_urls?: { [size: string]: string };
+  date: string;
+  content: {
+    rendered: string;
+  };
 }
 
 const API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'http://localhost:8000/wp-json';
@@ -134,6 +144,28 @@ export async function getTrendingPosts(): Promise<WPTrendingPost[]> {
   // Uses our custom REST API endpoint from notesgallery-headless.php
   const data = await fetchAPI(`/ng/v1/trending`);
   return data || [];
+}
+
+export async function getCommentsByPostId(postId: number): Promise<WPComment[]> {
+  const data = await fetchAPI(`/wp/v2/comments?post=${postId}&order=asc`);
+  return data || [];
+}
+
+export async function createComment(postId: number, name: string, email: string, content: string): Promise<boolean> {
+  const data = await fetchAPI(`/wp/v2/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      post: postId,
+      author_name: name,
+      author_email: email,
+      content: content,
+    }),
+  });
+  
+  return data !== null;
 }
 
 /**

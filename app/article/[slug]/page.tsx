@@ -1,10 +1,11 @@
-import { getPostBySlug, formatTimeAgo } from '@/lib/api';
+import { getPostBySlug, formatTimeAgo, getLatestPosts } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import ProgressBar from '@/components/ProgressBar';
 import TableOfContents from '@/components/TableOfContents';
 import FloatingSocialBar from '@/components/FloatingSocialBar';
 import ArticleActionBar from '@/components/ArticleActionBar';
 import RelatedPosts from '@/components/RelatedPosts';
+import CommentsSection from '@/components/CommentsSection';
 import HeaderShareButtons from '@/components/HeaderShareButtons';
 
 import { Metadata } from 'next';
@@ -30,11 +31,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  let post = await getPostBySlug(params.slug);
+  const [post, recentPosts] = await Promise.all([
+    getPostBySlug(params.slug),
+    getLatestPosts(4)
+  ]);
 
   if (!post) {
     return notFound();
   }
+
+  // Filter out the current post to use as 'Related'
+  const relatedPosts = recentPosts.filter(p => p.id !== post.id).slice(0, 3);
 
   // Construct JSON-LD Schema for Google Discover
   const jsonLd = {
@@ -143,18 +150,10 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             />
 
             {/* Related Posts Section */}
-            <RelatedPosts />
+            <RelatedPosts posts={relatedPosts} />
 
             {/* Comments Section Target */}
-            <div id="comments-section" className="mt-16 pt-8 border-t-2 border-gray-200 dark:border-gray-800">
-              <h3 className="text-2xl font-bold font-serif mb-6">Discussion</h3>
-              <div className="bg-gray-50 dark:bg-slate-900 rounded-xl p-6 text-center border border-gray-200 dark:border-gray-800">
-                <p className="text-gray-500 font-medium">Comments are loading...</p>
-                <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full text-sm font-bold hover:bg-blue-700 transition-colors">
-                  Join the Conversation
-                </button>
-              </div>
-            </div>
+            <CommentsSection postId={post.id} />
           </article>
 
           {/* Right Sidebar (TOC & Ads) */}
