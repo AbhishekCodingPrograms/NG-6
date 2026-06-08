@@ -62,33 +62,14 @@ export default async function Home() {
             {spotlightPost ? (
               <article className="border-b border-border pb-8 mb-8 group cursor-pointer">
                 {spotlightPost.featured_image_url ? (
-                  <div className="relative aspect-video mb-4 overflow-hidden bg-gray-100 md:rounded-lg -mx-4 md:mx-0">
+                  <div className="relative aspect-video mb-4 overflow-hidden bg-gray-100 rounded-lg">
                     <img 
                       src={spotlightPost.featured_image_url} 
                       alt="Spotlight Image" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      className="w-full h-full object-cover group-hover:opacity-90 transition-opacity" 
                     />
                   </div>
-                ) : (
-                  <div className="relative aspect-video mb-4 overflow-hidden bg-gray-100 rounded-lg">
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                      No Image Available
-                    </div>
-                  </div>
-                )}
-                
-                <div className="flex items-center gap-2 mb-3">
-                  {spotlightPost.category_names && spotlightPost.category_names.length > 0 ? (
-                    <span className="bg-foreground text-background text-xs font-bold uppercase px-2 py-1">
-                      {spotlightPost.category_names[0]}
-                    </span>
-                  ) : (
-                    <span className="bg-foreground text-background text-xs font-bold uppercase px-2 py-1">News</span>
-                  )}
-                  <span className="text-gray-500 text-xs font-medium uppercase tracking-wider">
-                    By NotesGallery Bureau
-                  </span>
-                </div>
+                ) : null}
                 
                 <a href={`/article/${spotlightPost.slug}`} className="block">
                   <h1 

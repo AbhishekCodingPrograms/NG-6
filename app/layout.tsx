@@ -43,33 +43,30 @@ export default async function RootLayout({
         </div>
 
         {/* Header */}
-        <header className="border-b border-border py-2 md:py-6 relative z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="border-b border-border py-2 md:py-4 relative z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container mx-auto px-4 flex justify-between items-center">
             
-            {/* Left: Mobile Menu & Weather */}
-            <div className="flex items-center gap-4 flex-1 md:flex-none">
+            {/* Left: Mobile Menu */}
+            <div className="flex items-center gap-4 w-1/4">
               <MobileMenu menuItems={primaryMenu} />
-              <div className="hidden lg:block text-xs font-semibold text-gray-500 uppercase tracking-widest border-l-2 border-primary pl-3 py-1">
-                Sat, Jun 6, 2026<br/>
-                <span className="text-foreground">Lucknow, UP 38°C</span>
-              </div>
             </div>
 
             {/* Center: Logo */}
             <div className="text-center flex-1">
               <a href="/" className="inline-block group">
-                <h1 className="text-2xl md:text-5xl font-serif font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">
+                <h1 className="text-2xl md:text-4xl font-serif font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">
                   NotesGallery<span className="text-primary">.</span>
                 </h1>
-                <p className="hidden md:block text-[0.65rem] uppercase tracking-[0.25em] text-gray-500 mt-1 font-bold">
-                  The Premier Destination for AKTU Students
-                </p>
               </a>
             </div>
 
-            {/* Right: Actions */}
-            <HeaderActions />
-
+            {/* Right: User / Search */}
+            <div className="w-1/4 flex justify-end items-center gap-4">
+              <button aria-label="Search" className="text-foreground hover:text-primary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </button>
+            </div>
+            
           </div>
         </header>
 

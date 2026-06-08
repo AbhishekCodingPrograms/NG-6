@@ -48,20 +48,12 @@ export default function MenuGridSection({
         {gridPosts.map((post, idx) => (
           <a key={post.id} href={`/article/${post.slug}`} className="group flex justify-between md:block py-4 md:py-0 cursor-pointer gap-4 items-center md:items-start first:pt-0 last:pb-0">
             
-            <div className="flex flex-col justify-between flex-1 order-1 md:order-2">
-              <div className={`text-[10px] md:text-xs font-bold uppercase tracking-widest ${textColorClass} mb-1 md:mb-2`}>
-                {post.category_names && post.category_names.length > 0 ? post.category_names[0] : 'Article'}
-              </div>
-
-              <h3 className="text-lg md:text-xl font-bold leading-tight text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1 md:mb-2 line-clamp-3" dangerouslySetInnerHTML={{ __html: post.title.rendered }}>
+            <div className="flex flex-col flex-1 order-1 md:order-2">
+              <h3 className="text-[15px] md:text-xl font-medium leading-snug md:font-bold md:leading-tight text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-3" dangerouslySetInnerHTML={{ __html: post.title.rendered }}>
               </h3>
-              
-              <div className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest">
-                {formatTimeAgo(post.date)}
-              </div>
             </div>
 
-            <div className="w-20 h-20 md:aspect-[4/3] md:w-full md:h-auto flex-shrink-0 bg-gray-100 dark:bg-gray-800 overflow-hidden md:mb-4 relative rounded-md border border-gray-200 dark:border-gray-800 order-2 md:order-1">
+            <div className="w-[110px] aspect-[4/3] md:w-full md:h-auto flex-shrink-0 bg-gray-100 dark:bg-gray-800 overflow-hidden md:mb-4 relative rounded-md border border-gray-200 dark:border-gray-800 order-2 md:order-1">
               <img 
                 src={post.featured_image_url || `https://images.unsplash.com/photo-[RANDOM]?w=400&q=80&random=${title.length + idx}`.replace('[RANDOM]', ['1516321497487-e288fb19713f', '1498050108023-c5249f4df085', '1454165804606-c3d57bc86b40', '1522202176988-66273c2fd55f'][idx % 4])} 
                 alt="Thumbnail" 
