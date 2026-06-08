@@ -91,26 +91,28 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           </div>
 
           <h1 
-            className="text-4xl md:text-6xl font-serif font-black leading-tight mb-6"
+            className="text-3xl md:text-6xl font-serif font-black leading-snug md:leading-tight mb-4"
             dangerouslySetInnerHTML={{ __html: post.title.rendered }}
           />
 
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
+          <div className="flex flex-row items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500 text-xs md:text-sm">
                 NG
               </div>
               <div>
-                <p className="font-bold text-sm uppercase tracking-wide">NotesGallery Bureau</p>
-                <p className="text-xs text-gray-500 font-medium">Published: {formatTimeAgo(post.date)}</p>
+                <p className="font-bold text-xs md:text-sm uppercase tracking-wide">NotesGallery</p>
+                <p className="text-[10px] md:text-xs text-gray-500 font-medium">{formatTimeAgo(post.date)}</p>
               </div>
             </div>
             
             {/* Social Share Buttons (Functional) */}
-            <HeaderShareButtons 
-              url={`https://notesgallery.com/article/${post.slug}`} 
-              title={post.title.rendered} 
-            />
+            <div className="scale-90 md:scale-100 origin-right">
+              <HeaderShareButtons 
+                url={`https://notesgallery.com/article/${post.slug}`} 
+                title={post.title.rendered} 
+              />
+            </div>
           </div>
         </div>
 
@@ -122,13 +124,13 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           {/* Main Content Area */}
           <article className="lg:flex-1 max-w-3xl">
             {post.featured_image_url && (
-              <figure className="mb-6">
+              <figure className="mb-6 -mx-4 md:mx-0 w-[calc(100%+2rem)] md:w-full">
                 <img 
                   src={post.featured_image_url} 
                   alt={post.title.rendered}
                   className="w-full h-auto object-cover"
                 />
-                <figcaption className="text-xs text-gray-500 mt-2 italic border-l-2 border-primary pl-2">
+                <figcaption className="text-[10px] md:text-xs text-gray-500 mt-2 italic border-l-2 border-primary pl-2 mx-4 md:mx-0">
                   Image via NotesGallery Publishers
                 </figcaption>
               </figure>

@@ -34,7 +34,7 @@ export default async function RootLayout({
         <SessionProvider>
           <Providers>
           {/* Ticker */}
-        <div className="ticker-container">
+        <div className="hidden md:block ticker-container">
           <div className="ticker-content">
             <span className="mr-8">SENSEX: 74,221 <span className="text-green-500">▲ +120</span></span>
             <span className="mr-8">AKTU RESULTS: <span className="text-green-500">DECLARED</span></span>
@@ -43,7 +43,7 @@ export default async function RootLayout({
         </div>
 
         {/* Header */}
-        <header className="border-b border-border py-4 md:py-6 relative z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="border-b border-border py-2 md:py-6 relative z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container mx-auto px-4 flex justify-between items-center">
             
             {/* Left: Mobile Menu & Weather */}
@@ -58,7 +58,7 @@ export default async function RootLayout({
             {/* Center: Logo */}
             <div className="text-center flex-1">
               <a href="/" className="inline-block group">
-                <h1 className="text-3xl md:text-5xl font-serif font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">
+                <h1 className="text-2xl md:text-5xl font-serif font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">
                   NotesGallery<span className="text-primary">.</span>
                 </h1>
                 <p className="hidden md:block text-[0.65rem] uppercase tracking-[0.25em] text-gray-500 mt-1 font-bold">

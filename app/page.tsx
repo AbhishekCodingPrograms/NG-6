@@ -33,11 +33,11 @@ export default async function Home() {
   return (
     <div className="pb-24">
       {/* Top Grid Container */}
-      <div className="container mx-auto px-4 mt-8">
-        <div className="flex flex-col lg:flex-row gap-8 mb-12">
+      <div className="container mx-auto px-4 mt-4 md:mt-8">
+        <div className="flex flex-col lg:flex-row gap-8 mb-8 md:mb-12">
           
           {/* Left Column: Latest Updates */}
-          <div className="lg:w-1/4 lg:border-r border-border lg:pr-8">
+          <div className="lg:w-1/4 lg:border-r border-border lg:pr-8 order-2 lg:order-1">
             <div className="flex items-center justify-between border-b-2 border-foreground pb-2 mb-6">
               <h2 className="font-bold uppercase tracking-wider text-lg">Latest Updates</h2>
             </div>
@@ -58,11 +58,11 @@ export default async function Home() {
           </div>
 
           {/* Center Column: Spotlight */}
-          <div className="lg:w-2/4 lg:border-r border-border lg:pr-8">
+          <div className="lg:w-2/4 lg:border-r border-border lg:pr-8 order-1 lg:order-2">
             {spotlightPost ? (
               <article className="border-b border-border pb-8 mb-8 group cursor-pointer">
                 {spotlightPost.featured_image_url ? (
-                  <div className="relative aspect-video mb-4 overflow-hidden bg-gray-100 rounded-lg">
+                  <div className="relative aspect-video mb-4 overflow-hidden bg-gray-100 md:rounded-lg -mx-4 md:mx-0">
                     <img 
                       src={spotlightPost.featured_image_url} 
                       alt="Spotlight Image" 
@@ -108,7 +108,7 @@ export default async function Home() {
           </div>
 
           {/* Right Column: Trending */}
-          <div className="lg:w-1/4">
+          <div className="lg:w-1/4 order-3 lg:order-3">
             <div className="flex items-center justify-between border-b-2 border-foreground pb-2 mb-6">
               <h2 className="font-bold uppercase tracking-wider text-lg">Trending Now</h2>
               <span className="bg-primary text-white text-[0.65rem] font-bold px-1.5 py-0.5 ml-2">HOT</span>
