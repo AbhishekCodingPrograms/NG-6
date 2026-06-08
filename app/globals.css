@@ -49,3 +49,13 @@
 .news-list-item {
   @apply py-4 border-b border-dashed border-border last:border-b-0;
 }
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

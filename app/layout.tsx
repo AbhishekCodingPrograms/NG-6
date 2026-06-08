@@ -71,7 +71,7 @@ export default async function RootLayout({
         {/* Navigation */}
         <nav className="border-b border-border sticky top-0 bg-background z-50">
           <div className="container mx-auto px-4">
-            <ul className="flex justify-start md:justify-center overflow-x-auto hide-scrollbar whitespace-nowrap px-2 md:px-0">
+            <ul className="flex md:justify-center overflow-x-auto hide-scrollbar whitespace-nowrap -mx-4 px-4 md:mx-0 md:px-0 gap-2">
               <li><a href="/" className="block nav-link text-primary hover:text-primary-dark transition-colors">Home</a></li>
               {primaryMenu.length > 0 && primaryMenu.map((item) => (
                 <li key={item.id}>
