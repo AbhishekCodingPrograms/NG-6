@@ -44,7 +44,7 @@ export default async function RootLayout({
         </div>
 
         {/* Header */}
-        <header className="border-b border-border py-2 md:py-4 relative z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="border-b border-border py-2 md:py-4 relative z-50 bg-background">
           <div className="container mx-auto px-4 flex justify-between items-center">
             
             {/* Left: Mobile Menu & Weather */}
