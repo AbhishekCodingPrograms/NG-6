@@ -1,4 +1,23 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/[slug]/page": "app/[slug]/page.js",
+  "/article/[slug]/page": "app/article/[slug]/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/blog/page": "app/blog/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/category/[slug]/page": "app/category/[slug]/page.js",
+  "/api/comments/route": "app/api/comments/route.js",
+  "/govt-jobs/page": "app/govt-jobs/page.js",
+  "/internships/page": "app/internships/page.js",
   "/page": "app/page.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js"
+  "/free-courses/page": "app/free-courses/page.js",
+  "/recruitment/page": "app/recruitment/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/hackathon/page": "app/hackathon/page.js",
+  "/jobs/page": "app/jobs/page.js",
+  "/about/page": "app/about/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/profile/page": "app/profile/page.js",
+  "/terms-of-use/page": "app/terms-of-use/page.js",
+  "/search/page": "app/search/page.js"
 }

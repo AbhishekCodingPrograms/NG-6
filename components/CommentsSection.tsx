@@ -49,7 +49,7 @@ export default function CommentsSection({ postId }: CommentsSectionProps) {
     setIsSubmitting(true);
     setSubmitMessage(null);
 
-    const result = await submitCommentAction(postId, name, email, content, pathname);
+    const result = await submitCommentAction(postId, name, email, content, pathname || '/');
 
     if (result.success) {
       setSubmitMessage({ text: result.message, isError: false });

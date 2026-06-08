@@ -35,6 +35,7 @@ export interface WPCategory {
   id: number;
   name: string;
   slug: string;
+  description: string;
 }
 
 export interface WPComment {
