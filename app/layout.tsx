@@ -7,7 +7,7 @@ import HeaderActions from "@/components/HeaderActions";
 import MobileMenu from "@/components/MobileMenu";
 import WeatherDateWidget from "@/components/WeatherDateWidget";
 
-import { getMenu } from '@/lib/api';
+import { getMenu, getTopCategoriesAsMenu } from '@/lib/api';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
@@ -25,7 +25,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const [primaryMenu, footerMenu] = await Promise.all([
-    getMenu('primary'),
+    getTopCategoriesAsMenu(),
     getMenu('footer')
   ]);
 
@@ -76,26 +76,14 @@ export default async function RootLayout({
         <nav className="border-b border-border sticky top-0 bg-background z-50">
           <div className="container mx-auto px-4">
             <ul className="flex justify-center overflow-x-auto hide-scrollbar whitespace-nowrap">
-              {primaryMenu.length > 0 ? (
-                primaryMenu.map((item) => (
-                  <li key={item.id}>
-                    <a href={item.url} className="block nav-link text-primary hover:text-primary-dark transition-colors">
-                      {item.title}
-                    </a>
-                  </li>
-                ))
-              ) : (
-                <>
-                  <li><a href="/" className="block nav-link text-primary">Home</a></li>
-                  <li><a href="/free-courses" className="block nav-link">Free Courses</a></li>
-                  <li><a href="/internships" className="block nav-link">Internships</a></li>
-                  <li><a href="/blog" className="block nav-link">Blog</a></li>
-                  <li><a href="/recruitment" className="block nav-link">Recruitment</a></li>
-                  <li><a href="/govt-jobs" className="block nav-link">Govt Job</a></li>
-                  <li><a href="/hackathon" className="block nav-link">Hackathon</a></li>
-                  <li><a href="/jobs" className="block nav-link">Jobs</a></li>
-                </>
-              )}
+              <li><a href="/" className="block nav-link text-primary hover:text-primary-dark transition-colors">Home</a></li>
+              {primaryMenu.length > 0 && primaryMenu.map((item) => (
+                <li key={item.id}>
+                  <a href={item.url} className="block nav-link text-primary hover:text-primary-dark transition-colors">
+                    {item.title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </nav>

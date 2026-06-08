@@ -122,6 +122,20 @@ export async function getMenu(location: string): Promise<WPMenu[]> {
   return data || [];
 }
 
+export async function getTopCategoriesAsMenu(): Promise<WPMenu[]> {
+  // Fetch top 10 categories with the most posts (the ones we scrape and post to)
+  const data = await fetchAPI(`/wp/v2/categories?per_page=12&orderby=count&order=desc`);
+  if (!data || !Array.isArray(data)) return [];
+  
+  return data
+    .filter((cat: any) => cat.count > 0 && cat.name !== 'Uncategorized')
+    .map((cat: any) => ({
+      id: cat.id,
+      title: cat.name,
+      url: `/category/${cat.slug}`,
+    }));
+}
+
 export async function getCategoryBySlug(slug: string): Promise<WPCategory | null> {
   const data = await fetchAPI(`/wp/v2/categories?slug=${slug}`);
   return data && data.length > 0 ? data[0] : null;
