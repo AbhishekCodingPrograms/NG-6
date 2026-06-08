@@ -5,6 +5,7 @@ import { Providers } from "./providers";
 import SessionProvider from "@/components/SessionProvider";
 import HeaderActions from "@/components/HeaderActions";
 import MobileMenu from "@/components/MobileMenu";
+import WeatherDateWidget from "@/components/WeatherDateWidget";
 
 import { getMenu } from '@/lib/api';
 
@@ -46,9 +47,10 @@ export default async function RootLayout({
         <header className="border-b border-border py-2 md:py-4 relative z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="container mx-auto px-4 flex justify-between items-center">
             
-            {/* Left: Mobile Menu */}
-            <div className="flex items-center gap-4 w-1/4">
+            {/* Left: Mobile Menu & Weather */}
+            <div className="flex items-center gap-4 flex-1">
               <MobileMenu menuItems={primaryMenu} />
+              <WeatherDateWidget />
             </div>
 
             {/* Center: Logo */}
