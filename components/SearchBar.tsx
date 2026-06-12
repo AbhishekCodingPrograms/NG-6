@@ -50,13 +50,14 @@ export default function SearchBar() {
                 <form onSubmit={handleSearch} className="flex-1 flex items-center">
                   <Search size={24} className="text-gray-400 mr-4" />
                   <input 
-                    type="text" 
+                    type="search" 
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search articles, notes, updates..."
                     className="w-full bg-transparent border-none outline-none text-2xl font-serif text-foreground placeholder-gray-500"
                     autoFocus
                   />
+                  <button type="submit" className="hidden" aria-hidden="true">Search</button>
                 </form>
                 <button 
                   onClick={() => setIsOpen(false)}
@@ -78,13 +79,14 @@ export default function SearchBar() {
                   <form onSubmit={handleSearch} className="flex-1 flex items-center bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2">
                     <Search size={18} className="text-gray-500 mr-2" />
                     <input 
-                      type="text" 
+                      type="search" 
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
                       placeholder="Search notes, jobs, articles..."
                       className="w-full bg-transparent border-none outline-none text-base text-foreground placeholder-gray-500"
                       autoFocus
                     />
+                    <button type="submit" className="hidden" aria-hidden="true">Search</button>
                     {query && (
                       <button type="button" onClick={() => setQuery('')} className="text-gray-500">
                         <X size={16} />
@@ -104,7 +106,9 @@ export default function SearchBar() {
                         <button 
                           key={tag}
                           onClick={() => {
-                            setQuery(tag);
+                            router.push(`/search?q=${encodeURIComponent(tag)}`);
+                            setIsOpen(false);
+                            setQuery('');
                           }}
                           className="px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm font-medium text-foreground hover:bg-gray-200 transition-colors"
                         >
