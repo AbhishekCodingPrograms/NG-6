@@ -193,17 +193,17 @@ export default async function RootLayout({
                     <p className="text-sm text-gray-400 mb-4">
                       Get the latest AKTU news, tech updates, and premium notes delivered straight to your inbox.
                     </p>
-                    <form className="flex flex-col gap-3" action={(e) => { /* Client side form behavior would go here, leaving as dummy for now */ }}>
+                    <form className="flex flex-col gap-3" action="/subscribe" method="POST">
                       <input 
                         type="email" 
+                        name="email"
                         placeholder="Enter your email address" 
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-primary text-white text-sm transition-colors"
                         required 
                       />
                       <button 
-                        type="button" 
+                        type="submit" 
                         className="w-full px-4 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-colors flex justify-center items-center gap-2 text-sm"
-                        onClick={(e) => { e.preventDefault(); alert("Thanks for subscribing to NotesGallery Newsletter!"); }}
                       >
                         Subscribe Now
                       </button>
