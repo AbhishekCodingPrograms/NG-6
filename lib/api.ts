@@ -141,6 +141,11 @@ export async function getCategoryBySlug(slug: string): Promise<WPCategory | null
   return data && data.length > 0 ? data[0] : null;
 }
 
+export async function getAllCategories(limit: number = 100): Promise<WPCategory[]> {
+  const data = await fetchAPI(`/wp/v2/categories?per_page=${limit}`);
+  return data || [];
+}
+
 export async function getPostsByCategory(categoryId: number, limit: number = 10): Promise<WPPost[]> {
   const data = await fetchAPI(`/wp/v2/posts?categories=${categoryId}&per_page=${limit}&_embed`);
   return data || [];
