@@ -183,7 +183,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
             {/* Typography Prose wrapper for WordPress HTML payload */}
             <div 
-              className="article-content prose prose-lg dark:prose-invert prose-headings:font-serif prose-headings:font-bold prose-a:text-primary hover:prose-a:text-primary-dark max-w-none"
+              className="article-content prose prose-base md:prose-lg dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-black prose-headings:tracking-tight prose-h2:mt-12 prose-h2:mb-4 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-gray-800 prose-h2:pb-2 prose-p:text-gray-800 dark:prose-p:text-gray-200 prose-p:leading-relaxed md:prose-p:leading-loose prose-p:mb-6 prose-a:text-primary hover:prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-slate-900/50 prose-blockquote:py-3 prose-blockquote:px-6 prose-blockquote:italic prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300 prose-blockquote:rounded-r-lg prose-img:rounded-xl prose-img:shadow-md prose-img:w-full prose-img:mx-auto prose-li:text-gray-800 dark:prose-li:text-gray-200 prose-strong:text-gray-900 dark:prose-strong:text-white"
               dangerouslySetInnerHTML={{ __html: post.content?.rendered || post.excerpt.rendered }}
             />
 
