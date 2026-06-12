@@ -111,7 +111,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       />
       <ProgressBar />
       
-      <div className="container mx-auto px-4 mt-8 max-w-7xl">
+      <div className="container mx-auto px-4 mt-8 max-w-7xl pb-16 md:pb-24">
         {/* Article Header (Economic Times Dense Magazine Style) */}
         <div className="border-b-4 border-foreground pb-6 mb-8">
           <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">
