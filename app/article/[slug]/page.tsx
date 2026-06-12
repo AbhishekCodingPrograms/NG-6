@@ -22,9 +22,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: post.title.rendered,
     alternates: {
-      canonical: `https://notesgallery.com/article/${params.slug}`,
+      canonical: `https://notesgallery.in/article/${params.slug}`,
       types: {
-        'amphtml': `https://notesgallery.com/article/${params.slug}/amp`,
+        'amphtml': `https://notesgallery.in/article/${params.slug}/amp`,
       },
     },
   };
@@ -54,14 +54,14 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     author: [{
       '@type': 'Person',
       name: 'NotesGallery Bureau',
-      url: 'https://notesgallery.com/author/ng-bureau'
+      url: 'https://notesgallery.in/author/ng-bureau'
     }],
     publisher: {
       '@type': 'Organization',
       name: 'NotesGallery',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://notesgallery.com/icon-512x512.png'
+        url: 'https://notesgallery.in/icon-512x512.png'
       }
     }
   };
@@ -109,7 +109,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
             {/* Social Share Buttons (Functional) */}
             <div className="scale-90 md:scale-100 origin-right">
               <HeaderShareButtons 
-                url={`https://notesgallery.com/article/${post.slug}`} 
+                url={`https://notesgallery.in/article/${post.slug}`} 
                 title={post.title.rendered} 
               />
             </div>
@@ -119,7 +119,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
         {/* Article Body & Sidebars */}
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-12 relative">
           
-          <FloatingSocialBar url={`https://notesgallery.com/article/${post.slug}`} title={post.title.rendered} />
+          <FloatingSocialBar url={`https://notesgallery.in/article/${post.slug}`} title={post.title.rendered} />
 
           {/* Main Content Area */}
           <article className="lg:flex-1 max-w-3xl">

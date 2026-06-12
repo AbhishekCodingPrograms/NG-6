@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${category.name} Archives | NotesGallery`,
     description: category.description || `Read the latest articles in ${category.name}`,
     alternates: {
-      canonical: `https://notesgallery.com/category/${params.slug}`,
+      canonical: `https://notesgallery.in/category/${params.slug}`,
     },
   };
 }

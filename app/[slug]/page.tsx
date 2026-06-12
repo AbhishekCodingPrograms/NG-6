@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${page.title.rendered} | NotesGallery`,
     alternates: {
-      canonical: `https://notesgallery.com/${params.slug}`,
+      canonical: `https://notesgallery.in/${params.slug}`,
     },
   };
 }

@@ -1,4 +1,5 @@
 import { getLatestPosts, getSpotlightPost, getTrendingPosts, formatTimeAgo, getPostsByCategorySlug } from '@/lib/api';
+import LatestPostsCarousel from '@/components/LatestPostsCarousel';
 import MenuHeroSection from '@/components/MenuHeroSection';
 import MenuGridSection from '@/components/MenuGridSection';
 import MenuListSection from '@/components/MenuListSection';
@@ -32,33 +33,14 @@ export default async function Home() {
 
   return (
     <div className="pb-24">
-      {/* Top Grid Container */}
+      {/* Top Slider Carousel & Grid Container */}
       <div className="container mx-auto px-4 mt-4 md:mt-8">
-        <div className="flex flex-col lg:flex-row gap-8 mb-8 md:mb-12">
-          
-          {/* Left Column: Latest Updates */}
-          <div className="lg:w-1/4 lg:border-r border-border lg:pr-8 order-2 lg:order-1">
-            <div className="flex items-center justify-between border-b-2 border-foreground pb-2 mb-6">
-              <h2 className="font-bold uppercase tracking-wider text-lg">Latest Updates</h2>
-            </div>
-            <ul className="space-y-0">
-              {latestPosts.length > 0 ? (
-                latestPosts.map((post) => (
-                  <li key={post.id} className="news-list-item group cursor-pointer">
-                    <span className="text-primary font-bold text-xs uppercase block mb-1">
-                      {formatTimeAgo(post.date)}
-                    </span>
-                    <a href={`/article/${post.slug}`} className="block font-bold leading-tight group-hover:text-primary transition-colors" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                  </li>
-                ))
-              ) : (
-                <li className="text-sm text-gray-500 italic">No latest updates available.</li>
-              )}
-            </ul>
-          </div>
+        
+        <LatestPostsCarousel posts={latestPosts} />
 
-          {/* Center Column: Spotlight */}
-          <div className="lg:w-2/4 lg:border-r border-border lg:pr-8 order-1 lg:order-2">
+        <div className="flex flex-col lg:flex-row gap-8 mb-8 md:mb-12 mt-8">
+          {/* Left Column: Spotlight */}
+          <div className="lg:w-2/3 lg:border-r border-border lg:pr-8">
             {spotlightPost ? (
               <article className="border-b border-border pb-8 mb-8 group cursor-pointer">
                 {spotlightPost.featured_image_url ? (
@@ -73,13 +55,13 @@ export default async function Home() {
                 
                 <a href={`/article/${spotlightPost.slug}`} className="block">
                   <h1 
-                    className="text-3xl md:text-4xl font-serif font-bold leading-tight mb-4 group-hover:text-primary transition-colors"
+                    className="text-3xl md:text-5xl font-serif font-bold leading-tight mb-4 group-hover:text-primary transition-colors"
                     dangerouslySetInnerHTML={{ __html: spotlightPost.title.rendered }}
                   />
                 </a>
                 
                 <div 
-                  className="font-serif text-gray-700 text-lg leading-relaxed line-clamp-3 dark:text-gray-300"
+                  className="font-serif text-gray-700 text-lg md:text-xl leading-relaxed line-clamp-3 dark:text-gray-300"
                   dangerouslySetInnerHTML={{ __html: spotlightPost.excerpt.rendered }}
                 />
               </article>
@@ -89,7 +71,7 @@ export default async function Home() {
           </div>
 
           {/* Right Column: Trending */}
-          <div className="lg:w-1/4 order-3 lg:order-3">
+          <div className="lg:w-1/3">
             <div className="flex items-center justify-between border-b-2 border-foreground pb-2 mb-6">
               <h2 className="font-bold uppercase tracking-wider text-lg">Trending Now</h2>
               <span className="bg-primary text-white text-[0.65rem] font-bold px-1.5 py-0.5 ml-2">HOT</span>
@@ -99,10 +81,10 @@ export default async function Home() {
               {trendingPosts.length > 0 ? (
                 trendingPosts.map((post, i) => (
                   <li key={post.id} className="flex gap-4 group cursor-pointer border-b border-dashed border-border pb-6 last:border-0">
-                    <span className="text-4xl font-serif font-black text-gray-200 leading-none mt-1 group-hover:text-primary transition-colors dark:text-gray-800">
+                    <span className="text-4xl md:text-5xl font-serif font-black text-gray-200 leading-none mt-1 group-hover:text-primary transition-colors dark:text-gray-800">
                       {i + 1}
                     </span>
-                    <a href={post.link} className="block font-bold leading-tight group-hover:text-primary transition-colors mt-1">
+                    <a href={post.link} className="block font-bold leading-tight group-hover:text-primary transition-colors mt-1 text-lg">
                       {post.title}
                     </a>
                   </li>

@@ -49,7 +49,7 @@ export default function ContactPage() {
               <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-indigo-500/20 group-hover:border-indigo-500/50 transition-all">
                 <Mail className="w-5 h-5 text-indigo-400" />
               </div>
-              <span className="text-lg">hello@notesgallery.com</span>
+              <span className="text-lg">hello@notesgallery.in</span>
             </div>
           </div>
         </div>
