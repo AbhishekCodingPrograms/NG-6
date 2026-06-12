@@ -108,12 +108,12 @@ export async function getSpotlightPost(): Promise<WPPost | null> {
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-  const data = await fetchAPI(`/wp/v2/posts?slug=${slug}&_embed`);
+  const data = await fetchAPI(`/wp/v2/posts?slug=${encodeURIComponent(slug)}&_embed`);
   return data && data.length > 0 ? data[0] : null;
 }
 
 export async function getPageBySlug(slug: string): Promise<WPPost | null> {
-  const data = await fetchAPI(`/wp/v2/pages?slug=${slug}&_embed`);
+  const data = await fetchAPI(`/wp/v2/pages?slug=${encodeURIComponent(slug)}&_embed`);
   return data && data.length > 0 ? data[0] : null;
 }
 
@@ -137,7 +137,7 @@ export async function getTopCategoriesAsMenu(): Promise<WPMenu[]> {
 }
 
 export async function getCategoryBySlug(slug: string): Promise<WPCategory | null> {
-  const data = await fetchAPI(`/wp/v2/categories?slug=${slug}`);
+  const data = await fetchAPI(`/wp/v2/categories?slug=${encodeURIComponent(slug)}`);
   return data && data.length > 0 ? data[0] : null;
 }
 
