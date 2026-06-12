@@ -7,7 +7,7 @@ import HeaderActions from "@/components/HeaderActions";
 import MobileMenu from "@/components/MobileMenu";
 import WeatherDateWidget from "@/components/WeatherDateWidget";
 
-import { getMenu, getTopCategoriesAsMenu } from '@/lib/api';
+import { getMenu, getTopCategoriesAsMenu, getLatestPosts } from '@/lib/api';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
@@ -42,10 +42,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [primaryMenu, footerMenu] = await Promise.all([
+  const [primaryMenu, footerMenu, latestPosts] = await Promise.all([
     getTopCategoriesAsMenu(),
-    getMenu('footer')
+    getMenu('footer'),
+    getLatestPosts(5)
   ]);
+
+  // Duplicate posts for seamless infinite scroll
+  const tickerItems = [...latestPosts, ...latestPosts];
 
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
@@ -53,13 +57,18 @@ export default async function RootLayout({
         <SessionProvider>
           <Providers>
             {/* Ticker */}
-            <div className="hidden md:block ticker-container">
-              <div className="ticker-content">
-                <span className="mr-8">SENSEX: 74,221 <span className="text-green-500">▲ +120</span></span>
-                <span className="mr-8">AKTU RESULTS: <span className="text-green-500">DECLARED</span></span>
-                <span className="mr-8">TCS HIRING: <span className="text-red-500">DEADLINE TOMORROW</span></span>
+            {latestPosts.length > 0 && (
+              <div className="hidden md:block bg-[#111] text-white text-xs font-bold py-2 overflow-hidden whitespace-nowrap relative border-b border-gray-800">
+                <div className="animate-ticker inline-block w-max">
+                  {tickerItems.map((post, idx) => (
+                    <span key={`${post.id}-${idx}`} className="mx-8">
+                      <span className="text-primary mr-2 uppercase">{post.category_names?.[0] || 'LATEST'}</span>
+                      <a href={`/article/${post.slug}`} className="hover:text-primary transition-colors" dangerouslySetInnerHTML={{ __html: post.title.rendered }}></a>
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Header */}
             <header className="border-b border-border py-2 md:py-4 relative z-50 bg-background">
