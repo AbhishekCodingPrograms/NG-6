@@ -118,7 +118,7 @@ export default async function RootLayout({
               <div className="container mx-auto px-4 max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
                   {/* Brand & Bio */}
-                  <div className="md:col-span-12 lg:col-span-5">
+                  <div className="md:col-span-12 lg:col-span-4">
                     <a href="/" className="inline-block group mb-6">
                       <h2 className="text-3xl font-serif font-black tracking-tighter text-white group-hover:text-primary transition-colors">
                         NotesGallery<span className="text-primary">.</span>
@@ -142,7 +142,7 @@ export default async function RootLayout({
                   </div>
 
                   {/* Categories */}
-                  <div className="md:col-span-4 lg:col-span-2 lg:col-start-7">
+                  <div className="md:col-span-4 lg:col-span-2">
                     <h3 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Categories</h3>
                     <ul className="space-y-3 text-sm text-gray-400">
                       {primaryMenu.slice(0, 5).map((item) => (
@@ -185,6 +185,29 @@ export default async function RootLayout({
                         </a>
                       </li>
                     </ul>
+                  </div>
+
+                  {/* Subscribe Newsletter */}
+                  <div className="md:col-span-12 lg:col-span-4">
+                    <h3 className="text-white font-bold uppercase tracking-widest text-sm mb-6">Stay Updated</h3>
+                    <p className="text-sm text-gray-400 mb-4">
+                      Get the latest AKTU news, tech updates, and premium notes delivered straight to your inbox.
+                    </p>
+                    <form className="flex flex-col gap-3" action={(e) => { /* Client side form behavior would go here, leaving as dummy for now */ }}>
+                      <input 
+                        type="email" 
+                        placeholder="Enter your email address" 
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-primary text-white text-sm transition-colors"
+                        required 
+                      />
+                      <button 
+                        type="button" 
+                        className="w-full px-4 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-colors flex justify-center items-center gap-2 text-sm"
+                        onClick={(e) => { e.preventDefault(); alert("Thanks for subscribing to NotesGallery Newsletter!"); }}
+                      >
+                        Subscribe Now
+                      </button>
+                    </form>
                   </div>
 
                 </div>
