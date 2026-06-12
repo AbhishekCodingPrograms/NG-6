@@ -13,10 +13,28 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
-  title: "NotesGallery Publisher Platform",
-  description: "Enterprise-grade technology news and educational platform.",
+  metadataBase: new URL('https://notesgallery.in'),
+  title: {
+    default: "NotesGallery | Premium Tech News & AKTU Updates",
+    template: "%s | NotesGallery",
+  },
+  description: "The premier destination for AKTU students and tech enthusiasts. Get instant access to the latest technology news, university updates, free courses, and premium internships.",
+  keywords: ["AKTU", "Technology News", "Internships", "Free Courses", "NotesGallery", "BTech Notes"],
+  openGraph: {
+    title: "NotesGallery | Premium Tech News & AKTU Updates",
+    description: "The premier destination for AKTU students and tech enthusiasts. Get instant access to the latest technology news, university updates, free courses, and premium internships.",
+    url: 'https://notesgallery.in',
+    siteName: 'NotesGallery',
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "NotesGallery | Premium Tech News & AKTU Updates",
+    description: "Instant access to AKTU news, tech updates, internships, and study materials.",
+  },
   manifest: "/manifest.json",
-  themeColor: "#d32f2f",
+  themeColor: "#2563eb",
 };
 
 export default async function RootLayout({
