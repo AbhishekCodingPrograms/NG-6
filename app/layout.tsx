@@ -193,14 +193,22 @@ export default async function RootLayout({
                     <p className="text-sm text-gray-400 mb-4">
                       Get the latest AKTU news, tech updates, and premium notes delivered straight to your inbox.
                     </p>
-                    <form className="flex flex-col gap-3" action="/subscribe" method="POST">
+                    <form 
+                      className="flex flex-col gap-3" 
+                      action="https://9f77f9d0.sibforms.com/serve/MUIFAPdzwyevM31Y8zodey7ZOlAiaiUJZLHeGfIjXw4oJVpRZfGr897Ynjm8i-yYX0BvT1yq3q1iWyFIXz9pFPqb-1d_nkcS5xn9Erxo5zu10TtVtrYxtXhtovE38ymJMU_lLcgFqlVM4wvpkxyZLKCnDyWuMI655bmZSBNbqN7Vq12gnIBwwFOG6VAkwi4pKrmi5paNbFNg43oC-Q==" 
+                      method="POST"
+                      target="_blank"
+                    >
                       <input 
                         type="email" 
-                        name="email"
+                        name="EMAIL"
+                        id="EMAIL"
                         placeholder="Enter your email address" 
                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:border-primary text-white text-sm transition-colors"
                         required 
                       />
+                      <input type="text" name="email_address_check" value="" className="hidden" />
+                      <input type="hidden" name="locale" value="en" />
                       <button 
                         type="submit" 
                         className="w-full px-4 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg transition-colors flex justify-center items-center gap-2 text-sm"
